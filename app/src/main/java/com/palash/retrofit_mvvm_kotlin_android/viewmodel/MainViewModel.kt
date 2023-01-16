@@ -10,10 +10,12 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(private val memesRepository: MemesRepository) : ViewModel(){
     init {
+        //Get all response from Repository........................
         viewModelScope.launch(Dispatchers.IO) {
             memesRepository.getMemesRepository()
         }
     }
 
+    //Livedata from repository
     val memesLiveDataViewModel : LiveData<Jokes> get() = memesRepository.memesLiveDataRepository
 }

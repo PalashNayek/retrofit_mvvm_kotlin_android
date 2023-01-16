@@ -16,10 +16,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Get api interface...............
         val myApi = ApiUtilities.getRetrofitInstance().create(MyApi::class.java)
+        //call repository...................
         val memesRepository = MemesRepository(myApi)
 
+        //set view model factory
         mainViewModel = ViewModelProvider(this, MainViewModelFactory(memesRepository))[MainViewModel::class.java]
+
+        //data access from view model.....
         mainViewModel.memesLiveDataViewModel.observe(this) {
             it.data.memes.iterator().forEach {meme ->
                 Log.d("MYLogs", "${meme.name}")

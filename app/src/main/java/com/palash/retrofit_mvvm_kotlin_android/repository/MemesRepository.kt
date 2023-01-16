@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.palash.retrofit_mvvm_kotlin_android.api.MyApi
 import com.palash.retrofit_mvvm_kotlin_android.model.Jokes
 
-class MemesRepository(val myApi: MyApi) {
+class MemesRepository(private val myApi: MyApi) {
     private val memesMutableLiveData = MutableLiveData<Jokes>()
     val memesLiveDataRepository : LiveData<Jokes> get() = memesMutableLiveData
 
